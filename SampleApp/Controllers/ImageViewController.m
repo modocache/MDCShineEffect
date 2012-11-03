@@ -1,4 +1,4 @@
-//  AppDelegate.m
+//  ImageViewController.m
 //
 //  Copyright (c) 2012 modocache
 //
@@ -23,21 +23,31 @@
 //
 
 
-#import "AppDelegate.h"
 #import "ImageViewController.h"
+#import "UIView+MDCShineEffect.h"
 
 
-@implementation AppDelegate
+@interface ImageViewController ()
+
+@end
 
 
-#pragma mark - UIApplicationDelegate Protocol Methods
+@implementation ImageViewController
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    self.window.rootViewController = [ImageViewController new];
-    return YES;
+
+#pragma mark - UIViewController Overrides
+
+- (void)viewDidLoad {
+    UIImage *image = [UIImage imageNamed:@"open-source-initiative-logo.png"];
+    CGRect imageViewRect = CGRectMake(floorf((self.view.frame.size.width - image.size.width)/2),
+                                      floorf((self.view.frame.size.height - image.size.height)/2),
+                                      image.size.width,
+                                      image.size.height);
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageViewRect];
+    imageView.image = image;
+    [imageView shine];
+
+    [self.view addSubview:imageView];
 }
 
 @end

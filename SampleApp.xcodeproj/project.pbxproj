@@ -13,6 +13,11 @@
 		DA2701AC1645C1E40086BD13 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DA2701AA1645C1E40086BD13 /* InfoPlist.strings */; };
 		DA2701AE1645C1E40086BD13 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2701AD1645C1E40086BD13 /* main.m */; };
 		DA2701B21645C1E40086BD13 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2701B11645C1E40086BD13 /* AppDelegate.m */; };
+		DA2701C61645C3AA0086BD13 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2701C51645C3AA0086BD13 /* ImageViewController.m */; };
+		DA2701C91645C5710086BD13 /* open-source-initiative-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DA2701C81645C5710086BD13 /* open-source-initiative-logo.png */; };
+		DA2701CC1645C6B40086BD13 /* UIView+MDCShineEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2701CB1645C6B40086BD13 /* UIView+MDCShineEffect.m */; };
+		DA2701CE1645C7CA0086BD13 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2701CD1645C7CA0086BD13 /* QuartzCore.framework */; };
+		DA2701D81645D2930086BD13 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2701D11645CCB70086BD13 /* CoreImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,13 @@
 		DA2701AF1645C1E40086BD13 /* SampleApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SampleApp-Prefix.pch"; sourceTree = "<group>"; };
 		DA2701B01645C1E40086BD13 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DA2701B11645C1E40086BD13 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DA2701C41645C3AA0086BD13 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		DA2701C51645C3AA0086BD13 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		DA2701C81645C5710086BD13 /* open-source-initiative-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "open-source-initiative-logo.png"; sourceTree = "<group>"; };
+		DA2701CA1645C6B40086BD13 /* UIView+MDCShineEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MDCShineEffect.h"; sourceTree = "<group>"; };
+		DA2701CB1645C6B40086BD13 /* UIView+MDCShineEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MDCShineEffect.m"; sourceTree = "<group>"; };
+		DA2701CD1645C7CA0086BD13 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DA2701D11645CCB70086BD13 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +48,8 @@
 				DA2701A21645C1E40086BD13 /* UIKit.framework in Frameworks */,
 				DA2701A41645C1E40086BD13 /* Foundation.framework in Frameworks */,
 				DA2701A61645C1E40086BD13 /* CoreGraphics.framework in Frameworks */,
+				DA2701D81645D2930086BD13 /* CoreImage.framework in Frameworks */,
+				DA2701CE1645C7CA0086BD13 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +59,8 @@
 		DA2701921645C1E40086BD13 = {
 			isa = PBXGroup;
 			children = (
+				DA2701CA1645C6B40086BD13 /* UIView+MDCShineEffect.h */,
+				DA2701CB1645C6B40086BD13 /* UIView+MDCShineEffect.m */,
 				DA2701A71645C1E40086BD13 /* SampleApp */,
 				DA2701A01645C1E40086BD13 /* Frameworks */,
 				DA27019E1645C1E40086BD13 /* Products */,
@@ -65,6 +81,8 @@
 				DA2701A11645C1E40086BD13 /* UIKit.framework */,
 				DA2701A31645C1E40086BD13 /* Foundation.framework */,
 				DA2701A51645C1E40086BD13 /* CoreGraphics.framework */,
+				DA2701D11645CCB70086BD13 /* CoreImage.framework */,
+				DA2701CD1645C7CA0086BD13 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -74,6 +92,8 @@
 			children = (
 				DA2701B01645C1E40086BD13 /* AppDelegate.h */,
 				DA2701B11645C1E40086BD13 /* AppDelegate.m */,
+				DA2701C31645C36F0086BD13 /* Controllers */,
+				DA2701C71645C53D0086BD13 /* Resources */,
 				DA2701A81645C1E40086BD13 /* Supporting Files */,
 			);
 			path = SampleApp;
@@ -88,6 +108,23 @@
 				DA2701AF1645C1E40086BD13 /* SampleApp-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DA2701C31645C36F0086BD13 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DA2701C41645C3AA0086BD13 /* ImageViewController.h */,
+				DA2701C51645C3AA0086BD13 /* ImageViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DA2701C71645C53D0086BD13 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DA2701C81645C5710086BD13 /* open-source-initiative-logo.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA2701AC1645C1E40086BD13 /* InfoPlist.strings in Resources */,
+				DA2701C91645C5710086BD13 /* open-source-initiative-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +192,8 @@
 			files = (
 				DA2701AE1645C1E40086BD13 /* main.m in Sources */,
 				DA2701B21645C1E40086BD13 /* AppDelegate.m in Sources */,
+				DA2701C61645C3AA0086BD13 /* ImageViewController.m in Sources */,
+				DA2701CC1645C6B40086BD13 /* UIView+MDCShineEffect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
