@@ -28,7 +28,7 @@
 #import <CoreImage/CoreImage.h>
 
 
-static CGFloat const kMDCShineEffectDefaultDuration = 3.0f;
+static CFTimeInterval const kMDCShineEffectDefaultDuration = 3.0;
 
 
 @implementation UIView (MDCShineEffect)
@@ -97,16 +97,15 @@ static CGFloat const kMDCShineEffectDefaultDuration = 3.0f;
 }
 
 - (UIImage *)highlightedImageForImage:(UIImage *)image {
-    CIImage *beginImage = [CIImage imageWithCGImage:image.CGImage];
+    CIImage *coreImage = [CIImage imageWithCGImage:image.CGImage];
     CIImage *output = [CIFilter filterWithName:@"CIColorControls"
-                                        keysAndValues:kCIInputImageKey, beginImage,
-                                                      @"inputBrightness", @1.0f,
-                                                      nil].outputImage;
+                                 keysAndValues:kCIInputImageKey, coreImage,
+                                               @"inputBrightness", @1.0f,
+                                               nil].outputImage;
 
     CIContext *context = [CIContext contextWithOptions:nil];
     CGImageRef cgImage = [context createCGImage:output fromRect:output.extent];
     UIImage *newImage = [UIImage imageWithCGImage:cgImage];
-
     CGImageRelease(cgImage);
 
     return newImage;
@@ -116,14 +115,13 @@ static CGFloat const kMDCShineEffectDefaultDuration = 3.0f;
     CGFloat maskHeight = floorf(image.size.height);
 
     UIGraphicsBeginImageContext(CGSizeMake(maskWidth, maskHeight));
-
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef clearColor = [UIColor clearColor].CGColor;
-    CGColorRef blackColor = [UIColor blackColor].CGColor;
 
+    id clearColor = (__bridge id) [UIColor clearColor].CGColor;
+    id blackColor = (__bridge id) [UIColor blackColor].CGColor;
     CGFloat locations[] = { 0.0f, 0.5f, 1.0f };
-    NSArray *colors = @[ (__bridge id)clearColor, (__bridge id)blackColor, (__bridge id)clearColor ];
+    NSArray *colors = @[ clearColor, blackColor, clearColor ];
 
     CGGradientRef gradient = CGGradientCreateWithColors(colorSpace,
                                                         (__bridge CFArrayRef)colors,
@@ -133,7 +131,6 @@ static CGFloat const kMDCShineEffectDefaultDuration = 3.0f;
     CGPoint endPoint = CGPointMake(floorf(maskWidth/2), midY);
 
     CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
-
     CFRelease(gradient);
     CFRelease(colorSpace);
 
