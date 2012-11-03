@@ -45,7 +45,7 @@
                                       image.size.height);
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageViewRect];
     imageView.image = image;
-    [imageView shine];
+    [imageView shineWithRepeatCount:HUGE_VALF duration:1.5f maskWidth:200.0f];
 
     [self.view addSubview:imageView];
 }

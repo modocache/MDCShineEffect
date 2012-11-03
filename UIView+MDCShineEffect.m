@@ -28,37 +28,55 @@
 #import <CoreImage/CoreImage.h>
 
 
+static CGFloat const kMDCShineEffectDefaultDuration = 3.0f;
+
+
 @implementation UIView (MDCShineEffect)
 
 
 #pragma mark - Public Interface
 
 - (void)shine {
+    [self shineWithRepeatCount:0];
+}
+
+- (void)shineWithRepeatCount:(float)repeatCount {
+    [self shineWithRepeatCount:repeatCount
+                      duration:kMDCShineEffectDefaultDuration];
+}
+
+- (void)shineWithRepeatCount:(float)repeatCount duration:(CFTimeInterval)duration {
+    [self shineWithRepeatCount:repeatCount
+                      duration:duration
+                     maskWidth:floorf(self.frame.size.width/3)];
+}
+
+- (void)shineWithRepeatCount:(float)repeatCount
+                    duration:(CFTimeInterval)duration
+                   maskWidth:(CGFloat)maskWidth {
     CGFloat width = self.frame.size.width;
     CGFloat height = self.frame.size.height;
 
-    UIGraphicsBeginImageContext(self.frame.size);
-    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    UIImage *viewImage = [self imageForView];
 
     CALayer *shineLayer = [CALayer layer];
     UIImage *shineImage = [self highlightedImageForImage:viewImage];
     shineLayer.contents = (id) shineImage.CGImage;
-    shineLayer.frame = CGRectMake(0, 1, width, height);
+    shineLayer.frame = CGRectMake(0, 0, width, height);
 
     CALayer *mask = [CALayer layer];
     mask.backgroundColor = [UIColor clearColor].CGColor;
-    UIImage *maskImage = [self maskImageForImage:viewImage];
+    UIImage *maskImage = [self maskImageForImage:viewImage width:maskWidth];
     mask.contents = (id) maskImage.CGImage;
     mask.contentsGravity = kCAGravityCenter;
     mask.frame = CGRectMake(-width, 0, width * 1.25, height);
 
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"position.x"];
     anim.byValue = @(width * 2);
-    anim.repeatCount = HUGE_VALF;
-    anim.duration = 3.0f;
-    anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    anim.repeatCount = repeatCount;
+    anim.duration = duration;
+    anim.timingFunction =
+        [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 
     [self.layer addSublayer:shineLayer];
     shineLayer.mask = mask;
@@ -68,6 +86,15 @@
 
 
 #pragma mark - Internal Methods
+
+- (UIImage *)imageForView {
+    UIGraphicsBeginImageContext(self.frame.size);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return viewImage;
+}
 
 - (UIImage *)highlightedImageForImage:(UIImage *)image {
     CIImage *beginImage = [CIImage imageWithCGImage:image.CGImage];
@@ -85,8 +112,7 @@
     return newImage;
 }
 
-- (UIImage *)maskImageForImage:(UIImage *)image {
-    CGFloat maskWidth = floorf(image.size.width/3);
+- (UIImage *)maskImageForImage:(UIImage *)image width:(CGFloat)maskWidth {
     CGFloat maskHeight = floorf(image.size.height);
 
     UIGraphicsBeginImageContext(CGSizeMake(maskWidth, maskHeight));
