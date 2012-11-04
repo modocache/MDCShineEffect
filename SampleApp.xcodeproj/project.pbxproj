@@ -18,6 +18,8 @@
 		DA2701CC1645C6B40086BD13 /* UIView+MDCShineEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2701CB1645C6B40086BD13 /* UIView+MDCShineEffect.m */; };
 		DA2701CE1645C7CA0086BD13 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2701CD1645C7CA0086BD13 /* QuartzCore.framework */; };
 		DA2701D81645D2930086BD13 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2701D11645CCB70086BD13 /* CoreImage.framework */; };
+		DAED59F41645E492003501C9 /* SamplesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED59F31645E492003501C9 /* SamplesTableViewController.m */; };
+		DAED59F81645E652003501C9 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED59F71645E652003501C9 /* CustomViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,10 @@
 		DA2701CB1645C6B40086BD13 /* UIView+MDCShineEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MDCShineEffect.m"; sourceTree = "<group>"; };
 		DA2701CD1645C7CA0086BD13 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DA2701D11645CCB70086BD13 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		DAED59F21645E492003501C9 /* SamplesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SamplesTableViewController.h; sourceTree = "<group>"; };
+		DAED59F31645E492003501C9 /* SamplesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SamplesTableViewController.m; sourceTree = "<group>"; };
+		DAED59F61645E652003501C9 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
+		DAED59F71645E652003501C9 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +119,12 @@
 		DA2701C31645C36F0086BD13 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DAED59F21645E492003501C9 /* SamplesTableViewController.h */,
+				DAED59F31645E492003501C9 /* SamplesTableViewController.m */,
 				DA2701C41645C3AA0086BD13 /* ImageViewController.h */,
 				DA2701C51645C3AA0086BD13 /* ImageViewController.m */,
+				DAED59F61645E652003501C9 /* CustomViewController.h */,
+				DAED59F71645E652003501C9 /* CustomViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -194,6 +204,8 @@
 				DA2701B21645C1E40086BD13 /* AppDelegate.m in Sources */,
 				DA2701C61645C3AA0086BD13 /* ImageViewController.m in Sources */,
 				DA2701CC1645C6B40086BD13 /* UIView+MDCShineEffect.m in Sources */,
+				DAED59F41645E492003501C9 /* SamplesTableViewController.m in Sources */,
+				DAED59F81645E652003501C9 /* CustomViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

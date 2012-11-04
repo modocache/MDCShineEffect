@@ -1,4 +1,4 @@
-//  ImageViewController.m
+//  CustomViewController.m
 //
 //  Copyright (c) 2012 modocache
 //
@@ -23,36 +23,38 @@
 //
 
 
-#import "ImageViewController.h"
+#import "CustomViewController.h"
 #import "UIView+MDCShineEffect.h"
 
 
-@interface ImageViewController ()
+@interface CustomViewController ()
 
 @end
 
 
-@implementation ImageViewController
+@implementation CustomViewController
 
 
 #pragma mark - UIViewController Overrides
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = NSLocalizedString(@"UIImageView", nil);
+    self.navigationItem.title = NSLocalizedString(@"Custom View", nil);
 
-    UIImage *image = [UIImage imageNamed:@"open-source-initiative-logo.png"];
-    CGRect imageViewRect = CGRectMake(floorf((self.view.frame.size.width - image.size.width)/2),
-                                      floorf((self.view.frame.size.height
-                                              - image.size.height
-                                              - self.navigationController.navigationBar.frame.size.height)/2),
-                                      image.size.width,
-                                      image.size.height);
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageViewRect];
-    imageView.image = image;
-    [imageView shineWithRepeatCount:HUGE_VALF duration:1.5 maskWidth:200.0f];
+    self.view.backgroundColor = [UIColor blueColor];
 
-    [self.view addSubview:imageView];
+    CGSize viewSize = CGSizeMake(100.0f, 100.0f);
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.frame) - viewSize.width/2,
+                                                            floorf((self.view.frame.size.height
+                                                                    - viewSize.height
+                                                                    - self.navigationController.navigationBar.frame.size.height)/2),
+                                                            viewSize.width,
+                                                            viewSize.height)];
+    view.backgroundColor = [UIColor blackColor];
+    [view shineWithRepeatCount:HUGE_VALF];
+    [self.view addSubview:view];
+
+    [self.view shineWithRepeatCount:HUGE_VALF duration:4.0 maskWidth:400.0f];
 }
 
 @end

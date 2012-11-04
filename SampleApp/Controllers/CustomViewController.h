@@ -1,4 +1,4 @@
-//  AppDelegate.m
+//  CustomViewController.h
 //
 //  Copyright (c) 2012 modocache
 //
@@ -23,26 +23,9 @@
 //
 
 
-#import "AppDelegate.h"
-#import "SamplesTableViewController.h"
+#import <UIKit/UIKit.h>
 
 
-@implementation AppDelegate
-
-
-#pragma mark - UIApplicationDelegate Protocol Methods
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-
-    SamplesTableViewController *samplesViewController = [SamplesTableViewController new];
-    UINavigationController *navigationController =
-        [[UINavigationController alloc] initWithRootViewController:samplesViewController];
-    self.window.rootViewController = navigationController;
-
-    return YES;
-}
+@interface CustomViewController : UIViewController
 
 @end
