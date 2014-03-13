@@ -2,6 +2,8 @@
 //
 //  Copyright (c) 2012 modocache
 //
+//  Modified by StoneArk, 2014-01-24
+//
 //  Permission is hereby granted, free of charge, to any person obtaining
 //  a copy of this software and associated documentation files (the
 //  "Software"), to deal in the Software without restriction, including
@@ -30,7 +32,7 @@
 /// to generate the images used.
 @interface UIView (MDCShineEffect)
 
-/// Perform a "shine" animation on the view.
+/// Perform a "shine" animation on the view (with the horizontal direction as the default).
 /// This is equivalent to calling shineWithRepeatCount: with a value of 0.
 /// @warning When generating the "shine" animation, several images are created and processed. These are only created once for each time shine or related methods are called. Therefore, performance and battery life will suffer when using this method repeatedly, as opposed to calling shineWithRepeatCount: or similar methods.
 - (void)shine;
@@ -51,5 +53,22 @@
 - (void)shineWithRepeatCount:(float)repeatCount
                     duration:(CFTimeInterval)duration
                    maskWidth:(CGFloat)maskWidth;
+
+/// Perform a "shine" animation on the view, with the horizontal direction.
+/// If you simply call the methods above, it will use the horizontal direction as the default.
+- (void)shineHorizontally;
+- (void)shineHorizontallyWithRepeatCount:(float)repeatCount;
+- (void)shineHorizontallyWithRepeatCount:(float)repeatCount duration:(CFTimeInterval)duration;
+- (void)shineHorizontallyWithRepeatCount:(float)repeatCount
+                                duration:(CFTimeInterval)duration
+                               maskWidth:(CGFloat)maskWidth;
+
+/// Perform a "shine" animation on the view, with the vertical direction.
+- (void)shineVertically;
+- (void)shineVerticallyWithRepeatCount:(float)repeatCount;
+- (void)shineVerticallyWithRepeatCount:(float)repeatCount duration:(CFTimeInterval)duration;
+- (void)shineVerticallyWithRepeatCount:(float)repeatCount
+                              duration:(CFTimeInterval)duration
+                            maskHeight:(CGFloat)maskHeight;
 
 @end

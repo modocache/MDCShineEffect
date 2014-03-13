@@ -2,6 +2,8 @@
 //
 //  Copyright (c) 2012 modocache
 //
+//  Modified by StoneArk, 2014-01-24
+//
 //  Permission is hereby granted, free of charge, to any person obtaining
 //  a copy of this software and associated documentation files (the
 //  "Software"), to deal in the Software without restriction, including
@@ -54,36 +56,103 @@ static CFTimeInterval const kMDCShineEffectDefaultDuration = 3.0;
 - (void)shineWithRepeatCount:(float)repeatCount
                     duration:(CFTimeInterval)duration
                    maskWidth:(CGFloat)maskWidth {
+    [self shineHorizontallyWithRepeatCount:repeatCount duration:duration maskWidth:maskWidth];
+}
+
+- (void)shineHorizontally {
+    [self shineHorizontallyWithRepeatCount:0];
+}
+
+- (void)shineHorizontallyWithRepeatCount:(float)repeatCount {
+    [self shineHorizontallyWithRepeatCount:repeatCount
+                                  duration:kMDCShineEffectDefaultDuration];
+}
+
+- (void)shineHorizontallyWithRepeatCount:(float)repeatCount duration:(CFTimeInterval)duration {
+    [self shineHorizontallyWithRepeatCount:repeatCount
+                                  duration:duration
+                                 maskWidth:floorf(self.frame.size.width/3)];
+}
+
+- (void)shineVertically {
+    [self shineVerticallyWithRepeatCount:0];
+}
+
+- (void)shineVerticallyWithRepeatCount:(float)repeatCount {
+    [self shineVerticallyWithRepeatCount:repeatCount
+                                duration:kMDCShineEffectDefaultDuration];
+}
+
+- (void)shineVerticallyWithRepeatCount:(float)repeatCount duration:(CFTimeInterval)duration {
+    [self shineVerticallyWithRepeatCount:repeatCount
+                                duration:duration
+                              maskHeight:floorf(self.frame.size.height/3)];
+}
+
+- (void)shineHorizontallyWithRepeatCount:(float)repeatCount
+                                duration:(CFTimeInterval)duration
+                               maskWidth:(CGFloat)maskWidth {
     CGFloat width = self.frame.size.width;
     CGFloat height = self.frame.size.height;
-
+    
     UIImage *viewImage = [self imageForView];
-
+    
     CALayer *shineLayer = [CALayer layer];
     UIImage *shineImage = [self highlightedImageForImage:viewImage];
     shineLayer.contents = (id) shineImage.CGImage;
     shineLayer.frame = CGRectMake(0, 0, width, height);
-
+    
     CALayer *mask = [CALayer layer];
     mask.backgroundColor = [UIColor clearColor].CGColor;
     UIImage *maskImage = [self maskImageForImage:viewImage width:maskWidth];
     mask.contents = (id) maskImage.CGImage;
     mask.contentsGravity = kCAGravityCenter;
     mask.frame = CGRectMake(-width, 0, width * 1.25, height);
-
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"position.x"];
     anim.byValue = @(width * 2);
     anim.repeatCount = repeatCount;
     anim.duration = duration;
     anim.timingFunction =
-        [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-
+    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    
     [self.layer addSublayer:shineLayer];
     shineLayer.mask = mask;
-
-    [mask addAnimation:anim forKey:@"shine"];
+    
+    [mask addAnimation:anim forKey:@"shineHorizontally"];
 }
 
+- (void)shineVerticallyWithRepeatCount:(float)repeatCount
+                              duration:(CFTimeInterval)duration
+                            maskHeight:(CGFloat)maskHeight {
+    CGFloat width = self.frame.size.width;
+    CGFloat height = self.frame.size.height;
+    
+    UIImage *viewImage = [self imageForView];
+    
+    CALayer *shineLayer = [CALayer layer];
+    UIImage *shineImage = [self highlightedImageForImage:viewImage];
+    shineLayer.contents = (id) shineImage.CGImage;
+    shineLayer.frame = CGRectMake(0, 0, width, height);
+    
+    CALayer *mask = [CALayer layer];
+    mask.backgroundColor = [UIColor clearColor].CGColor;
+    UIImage *maskImage = [self maskImageForImage:viewImage height:maskHeight];
+    mask.contents = (id) maskImage.CGImage;
+    mask.contentsGravity = kCAGravityCenter;
+    mask.frame = CGRectMake(0, -height, width, height);
+    
+    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"position.y"];
+    anim.byValue = @(height * 2);
+    anim.repeatCount = repeatCount;
+    anim.duration = duration;
+    anim.timingFunction =
+    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    
+    [self.layer addSublayer:shineLayer];
+    shineLayer.mask = mask;
+    
+    [mask addAnimation:anim forKey:@"shineVertically"];
+}
 
 #pragma mark - Internal Methods
 
@@ -137,6 +206,35 @@ static CFTimeInterval const kMDCShineEffectDefaultDuration = 3.0;
     UIImage *maskImage =  UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 
+    return maskImage;
+}
+
+- (UIImage *)maskImageForImage:(UIImage *)image height:(CGFloat)maskHeight {
+    CGFloat maskWidth = floorf(image.size.width);
+    
+    UIGraphicsBeginImageContext(CGSizeMake(maskWidth, maskHeight));
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    id clearColor = (__bridge id) [UIColor clearColor].CGColor;
+    id blackColor = (__bridge id) [UIColor blackColor].CGColor;
+    CGFloat locations[] = { 0.0f, 0.5f, 1.0f };
+    NSArray *colors = @[ clearColor, blackColor, clearColor ];
+    
+    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace,
+                                                        (__bridge CFArrayRef)colors,
+                                                        locations);
+    CGFloat midX = floorf(maskWidth/2);
+    CGPoint startPoint = CGPointMake(midX, 0);
+    CGPoint endPoint = CGPointMake(midX,floorf(maskHeight/2));
+    
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+    CFRelease(gradient);
+    CFRelease(colorSpace);
+    
+    UIImage *maskImage =  UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
     return maskImage;
 }
 

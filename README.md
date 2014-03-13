@@ -23,3 +23,7 @@ matter](http://nsscreencast.com/episodes/40-shine-effect). If you
 haven't heard of [NSScreencast](http://nsscreencast.com), I highly
 recommend you subscribe. As far as OS X/iOS development resources go,
 it's the best money you'll ever spend.
+
+## Update
+
+Add the shine effect with vertical direction.

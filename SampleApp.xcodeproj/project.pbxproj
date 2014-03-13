@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EEE59FA18D18F0400A1D689 /* ImageViewVerticallyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE59F918D18F0400A1D689 /* ImageViewVerticallyController.m */; };
 		DA2701A21645C1E40086BD13 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2701A11645C1E40086BD13 /* UIKit.framework */; };
 		DA2701A41645C1E40086BD13 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2701A31645C1E40086BD13 /* Foundation.framework */; };
 		DA2701A61645C1E40086BD13 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2701A51645C1E40086BD13 /* CoreGraphics.framework */; };
@@ -23,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8EEE59F818D18F0400A1D689 /* ImageViewVerticallyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewVerticallyController.h; sourceTree = "<group>"; };
+		8EEE59F918D18F0400A1D689 /* ImageViewVerticallyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewVerticallyController.m; sourceTree = "<group>"; };
 		DA27019D1645C1E40086BD13 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA2701A11645C1E40086BD13 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DA2701A31645C1E40086BD13 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -123,6 +126,8 @@
 				DAED59F31645E492003501C9 /* SamplesTableViewController.m */,
 				DA2701C41645C3AA0086BD13 /* ImageViewController.h */,
 				DA2701C51645C3AA0086BD13 /* ImageViewController.m */,
+				8EEE59F818D18F0400A1D689 /* ImageViewVerticallyController.h */,
+				8EEE59F918D18F0400A1D689 /* ImageViewVerticallyController.m */,
 				DAED59F61645E652003501C9 /* CustomViewController.h */,
 				DAED59F71645E652003501C9 /* CustomViewController.m */,
 			);
@@ -201,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA2701AE1645C1E40086BD13 /* main.m in Sources */,
+				8EEE59FA18D18F0400A1D689 /* ImageViewVerticallyController.m in Sources */,
 				DA2701B21645C1E40086BD13 /* AppDelegate.m in Sources */,
 				DA2701C61645C3AA0086BD13 /* ImageViewController.m in Sources */,
 				DA2701CC1645C6B40086BD13 /* UIView+MDCShineEffect.m in Sources */,
