@@ -27,7 +27,7 @@
 
 #import "CustomViewController.h"
 #import "ImageViewController.h"
-
+#import "ImageViewVerticallyController.h"
 
 @interface SamplesTableViewController ()
 @property (nonatomic, strong) NSArray *viewControllers;
@@ -42,7 +42,7 @@
 - (id)init {
     self = [super initWithStyle:UITableViewStylePlain];
     if (self) {
-        _viewControllers = @[ [ImageViewController class], [CustomViewController class] ];
+        _viewControllers = @[ [ImageViewController class], [ImageViewVerticallyController class], [CustomViewController class] ];
     }
     return self;
 }
